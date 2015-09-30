@@ -1,43 +1,45 @@
 Snowflake [] squad;
-Bubble [] team;
+//Bubble [] team;
 void setup()
 {
   size(600,600);
+  background(0);
   squad = new Snowflake[101];
   for(int i=0; i<squad.length; i++)
   {
     squad[i] = new Snowflake();
   }
-  team = new Bubble[102];
+  /*team = new Bubble[102];
   for(int b=0; b<team.length; b++)
   {
     team[b] = new Bubble();
-  }
+  }*/
   frameRate(480);
 }
 void draw()
 {
-  background(0);
   for(int i=0; i<squad.length; i++)
   {
     squad[i].erase();
-    //squad[i].lookDown();
+    squad[i].lookDown();
     squad[i].move();
     squad[i].wrap();
     squad[i].show();
   }
-  for(int b=0; b<team.length; b++)
+  /*for(int b=0; b<team.length; b++)
   {
     team[b].bErase();
-    //team[b].bLookUp();
+    team[b].bLookUp();
     team[b].bMove();
     team[b].bWrap();
     team[b].bShow();
-  }
+  }*/
 }
 void mouseDragged()
 {
-  //your code here
+  noStroke();
+  fill(0,255,0);
+  ellipse(mouseX,mouseY,20,20);
 }
 
 class Snowflake
@@ -58,7 +60,7 @@ class Snowflake
   }
   void lookDown()
   {
-    if(y > 0 && y < 600 && get(x,y+6) == color(0,0,255))
+    if(y > -9 && y < 591 && get(x,y+9) == color(0,255,0))
     {
       isMoving = false;
     }
@@ -69,10 +71,9 @@ class Snowflake
   }
   void erase()
   {
-    //set fill to black?
     noStroke();
     fill(0);
-    ellipse(x,y,7,7);
+    ellipse(x,y,12,12);
   }
   void move()
   {
@@ -119,7 +120,7 @@ class Bubble
   }
   void bErase()
   {
-    noStroke();
+    //noStroke();
     fill(0);
     ellipse(x,y,17,17);
   }
