@@ -1,4 +1,5 @@
 Snowflake [] squad;
+//int count = 0;
 void setup()
 {
   size(600,600);
@@ -12,6 +13,10 @@ void setup()
 }
 void draw()
 {
+  noStroke();
+  fill(0);
+  rect(0,0,600,50);
+  textSize(20);
   for(int i=0; i<squad.length; i++)
   {
     squad[i].erase();
@@ -20,6 +25,18 @@ void draw()
     squad[i].wrap();
     squad[i].show();
   }
+  int count = 0;
+  for(int i=0; i<squad.length; i++)
+  {
+    if(squad[i].isMoving == false)
+    {
+      count++; 
+    }
+  }
+  textSize(20);
+  textAlign(CENTER);
+  fill(255,0,255);
+  text("Snowflakes caught: "+count,300,25);
 }
 void mouseDragged()
 {
@@ -43,7 +60,7 @@ class Snowflake
   Snowflake()
   {
     x = (int)(Math.random()*600);
-    y = (int)(Math.random()*600);
+    y = (int)(Math.random()*550)+50;
     isMoving = true;
   }
   void show()
@@ -54,7 +71,7 @@ class Snowflake
   }
   void lookDown()
   {
-    if(y > -10 && y < 590 && get(x,y+6) == color(0,255,0))
+    if(y > 40 && y < 590 && get(x,y+6) == color(0,255,0))
     {
       isMoving = false;
     }
@@ -80,7 +97,7 @@ class Snowflake
   {
     if(y > 600)
     {
-      y = 0;
+      y = 50;
       x = (int)(Math.random()*600);
     }
   }
